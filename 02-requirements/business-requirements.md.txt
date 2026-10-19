@@ -1,0 +1,63 @@
+# System Notification Management – Business Requirements
+
+**Version:** 1.0 | **Date:** 2026-10-19
+**Reference:** Context, actors, and send mode details are in `business-analysis.md`.
+
+## 1. Business Rules
+| ID | Rule |
+|---|---|
+| BR-01 | Notifications are available only for the supported modules (Analysis §4). |
+| BR-02 | Templates are defined per module and per channel. |
+| BR-03 | Auto mode sends in the background after voucher save with no user action. |
+| BR-04 | Prompt mode shows a popup after save; the user selects a template, may edit content, then sends. |
+| BR-05 | Manual mode is started from a listing page; the user selects a template, may edit content, then sends. |
+| BR-06 | Each SMS is routed through either Sparrow or QuickConnect. |
+| BR-07 | Only Email supports attachments (voucher and additional). |
+| BR-08 | SMS and WhatsApp messages are template-based; variables are replaced with voucher data. |
+| BR-09 | Every notification is logged with a status: Pending, Failed, or Delivered (where supported). |
+| BR-10 | Each SMS sent counts toward the client's license usage and balance (if applicable). |
+| BR-11 | Super Admin sees SMS data for all licenses; a client sees only its own. |
+
+## 2. Functional Requirements
+| ID | Requirement |
+|---|---|
+| FR-01 | Support Email, SMS, and WhatsApp channels. |
+| FR-02 | Integrate SMS with Sparrow and QuickConnect. |
+| FR-03 | Configure notification templates by module and channel. |
+| FR-04 | Support Auto, Prompt, and Manual send modes. |
+| FR-05 | Allow editing content before sending. |
+| FR-06 | Attach the voucher to Email notifications. |
+| FR-07 | Allow additional attachments in Email notifications. |
+| FR-08 | Maintain notification history and delivery status. |
+| FR-09 | Provide a Super Admin SMS dashboard (license-wise): total SMS per client, usage by provider, daily/monthly consumption, remaining balance, success/failed statistics. |
+| FR-10 | Provide a Client SMS dashboard: total sent, by module, by provider, monthly trend, success/failed statistics, balance and utilization. |
+
+## 3. Non-Functional Requirements
+*Not stated in the source document; proposed as standard expectations. Confirm targets with stakeholders.*
+
+| ID | Category | Requirement |
+|---|---|---|
+| NFR-01 | Performance | Auto sending must not delay or block voucher save (asynchronous processing). |
+| NFR-02 | Reliability | Failed sends are logged; transient failures are retried. |
+| NFR-03 | Availability | A provider outage must not affect core voucher operations. |
+| NFR-04 | Security | Provider credentials are stored encrypted; access is role-based. |
+| NFR-05 | Data Isolation | Client data is isolated per license. |
+| NFR-06 | Auditability | History records who, when, channel, and status. |
+| NFR-07 | Scalability | Handles high-volume sending and dashboard queries without degradation. |
+| NFR-08 | Usability | Prompt and Manual popups need only: select template, edit, send. |
+| NFR-09 | Maintainability | New channels or SMS providers can be added without changing existing modules. |
+| NFR-10 | Accuracy | Dashboard counts match notification history records. |
+
+## 4. Notification Statuses
+Pending, Failed, Delivered (where supported).
+
+## 5. Acceptance Criteria
+| ID | Criterion | Covers |
+|---|---|---|
+| AC-01 | Notifications send via Email, SMS, and WhatsApp. | FR-01 |
+| AC-02 | SMS routes through Sparrow and QuickConnect. | FR-02, BR-06 |
+| AC-03 | Email supports voucher and additional attachments. | FR-06, FR-07 |
+| AC-04 | Auto, Prompt, and Manual modes work as specified. | FR-04, BR-03 to BR-05 |
+| AC-05 | Super Admin can view license-wise SMS usage. | FR-09 |
+| AC-06 | Clients can view their SMS consumption dashboard. | FR-10 |
+| AC-07 | Notification history and status tracking are available. | FR-08, BR-09 |
