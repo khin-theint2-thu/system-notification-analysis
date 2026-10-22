@@ -1,10 +1,10 @@
-# System Notification Management: Level 1 DFD (Send Notification Logic)
+# System Notification Management: DFD (Send Notification Logic)
 ![alt text](image.png)
 
 
 ## Overview
 
-This Level 1 data flow diagram shows how a notification is created and sent after a Purchase Invoice is saved. The same logic applies to the other supported modules (Sales Invoice, Sales Return, Purchase Return, Credit Note, Debit Note, Cash/Bank Voucher and Journal Voucher).
+This data flow diagram shows how a notification is created and sent after a Purchase Invoice is saved. The same logic applies to the other supported modules (Sales Invoice, Sales Return, Purchase Return, Credit Note, Debit Note, Cash/Bank Voucher and Journal Voucher).
 
 ## Voucher Creation
 
