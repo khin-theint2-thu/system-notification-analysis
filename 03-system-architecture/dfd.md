@@ -1,6 +1,6 @@
 # System Notification Management: Level 1 DFD (Send Notification Logic)
+![alt text](image.png)
 
-![alt text](image-1.png)
 
 ## Overview
 
